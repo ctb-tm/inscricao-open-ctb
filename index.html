@@ -29,39 +29,25 @@
       align-items: center;
       min-height: 100vh;
       overflow-x: hidden;
-      animation: fadeIn 1s ease forwards;
+      scroll-behavior: smooth;
     }
 
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(10px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    /* 🌟 Cabeçalho 3D Animado */
+    /* 🌟 Cabeçalho 3D com imagem */
     header {
-      width: 758px;
+      width: 756px;
       height: 256px;
       margin-top: 60px;
-      background: linear-gradient(135deg, #19305A 0%, #2BA02D 85%);
       border-radius: 28px;
-      display: flex;
-      align-items: center;
-      justify-content: space-around;
       position: relative;
+      overflow: hidden;
       box-shadow: 0 10px 30px rgba(25, 48, 90, 0.25);
       transform-style: preserve-3d;
       animation: flutuar 6s ease-in-out infinite, zoomIn 1.5s ease-out;
     }
 
     @keyframes flutuar {
-      0%, 100% {
-        transform: translateY(0px) rotateX(0deg) rotateY(0deg);
-        box-shadow: 0 10px 30px rgba(25, 48, 90, 0.25);
-      }
-      50% {
-        transform: translateY(-10px) rotateX(2deg) rotateY(-2deg);
-        box-shadow: 0 18px 40px rgba(25, 48, 90, 0.35);
-      }
+      0%, 100% { transform: translateY(0px) rotateX(0deg); }
+      50% { transform: translateY(-10px) rotateX(2deg); }
     }
 
     @keyframes zoomIn {
@@ -73,28 +59,28 @@
       content: "";
       position: absolute;
       inset: 0;
-      border-radius: 28px;
-      background: radial-gradient(circle at 30% 20%, rgba(255, 255, 255, 0.18), transparent 60%);
+      background: radial-gradient(circle at 30% 20%, rgba(255, 255, 255, 0.18), transparent 70%);
       z-index: 1;
       animation: luz 8s ease-in-out infinite alternate;
     }
 
     @keyframes luz {
-      0% { background-position: 20% 20%; opacity: 0.5; }
-      100% { background-position: 80% 80%; opacity: 0.8; }
+      0% { opacity: 0.5; }
+      100% { opacity: 0.9; }
     }
 
     header img {
-      height: 160px;
-      object-fit: contain;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 28px;
       position: relative;
       z-index: 2;
       transition: transform 0.4s ease;
-      filter: drop-shadow(0 4px 6px rgba(0,0,0,0.15));
     }
 
-    header img:hover {
-      transform: translateY(-6px) scale(1.05);
+    header:hover img {
+      transform: scale(1.02);
     }
 
     /* 🧭 Formulário */
@@ -107,19 +93,14 @@
       padding: 40px;
       box-shadow: 0 4px 25px rgba(25, 48, 90, 0.1);
       text-align: center;
-      transition: all 0.3s ease;
-      animation: slideUp 1.5s ease forwards 0.5s;
+      transition: all 0.5s ease;
       opacity: 0;
+      transform: translateY(50px);
     }
 
-    @keyframes slideUp {
-      to { opacity: 1; transform: translateY(0); }
-      from { opacity: 0; transform: translateY(30px); }
-    }
-
-    .container:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 8px 30px rgba(25, 48, 90, 0.15);
+    .reveal {
+      opacity: 1 !important;
+      transform: translateY(0) !important;
     }
 
     h2 {
@@ -210,17 +191,23 @@
       color: var(--verde);
       margin-top: 20px;
       display: none;
-      animation: fadeIn 1s ease;
     }
 
+    /* 📎 Rodapé */
     footer {
       text-align: center;
       margin: 40px auto 60px auto;
       font-size: 15px;
       color: var(--azul);
       line-height: 1.6;
-      animation: slideUp 1.5s ease forwards 1s;
       opacity: 0;
+      transform: translateY(40px);
+      transition: all 0.5s ease;
+    }
+
+    footer.reveal {
+      opacity: 1;
+      transform: translateY(0);
     }
 
     .pix {
@@ -246,7 +233,6 @@
       width: 120px;
       border-radius: 10px;
       border: 1px solid rgba(25, 48, 90, 0.1);
-      animation: fadeIn 2s ease forwards;
     }
 
     a.pdf-link {
@@ -262,11 +248,9 @@
       header {
         width: 95%;
         height: auto;
-        flex-direction: column;
-        padding: 20px;
       }
       header img {
-        height: 100px;
+        height: auto;
       }
       .container {
         width: 90%;
@@ -278,15 +262,13 @@
 
 <body>
 
-  <!-- 🧊 Cabeçalho 3D Animado -->
+  <!-- 🧊 Cabeçalho 3D -->
   <header>
-    <img src="ctb.png" alt="Logo CTB">
-    <img src="2open.png" alt="Open CTB 2025">
-    <img src="3open.png" alt="Logo 3">
+    <img src="opensite.png" alt="Open CTB 2025">
   </header>
 
   <!-- 📋 Formulário -->
-  <div class="container">
+  <div class="container reveal">
     <h2>Ficha de Inscrição - Open CTB 2025</h2>
 
     <form id="inscricaoForm">
@@ -318,7 +300,7 @@
   </div>
 
   <!-- 📎 Rodapé -->
-  <footer>
+  <footer class="reveal">
     <strong>Conta para pagamento:</strong><br>
     Banco 323 - Mercado Pago<br>Agência 0001 - Conta Corrente 8604599783-0<br>
     <div class="pix">PIX: parcerias@ctb-ba.com.br</div>
@@ -330,6 +312,7 @@
   </footer>
 
   <script>
+    // Envio de dados
     const form = document.getElementById('inscricaoForm');
     const mensagem = document.getElementById('mensagem');
 
@@ -355,6 +338,18 @@
       } else {
         alert("Erro ao enviar inscrição. Tente novamente.");
       }
+    });
+
+    // Efeito scroll reveal
+    const elementos = document.querySelectorAll('.container, footer');
+    window.addEventListener('scroll', () => {
+      const alturaJanela = window.innerHeight * 0.85;
+      elementos.forEach(el => {
+        const topo = el.getBoundingClientRect().top;
+        if (topo < alturaJanela) {
+          el.classList.add('reveal');
+        }
+      });
     });
   </script>
 
