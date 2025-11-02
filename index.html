@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Inscrição - Open CTB 2025</title>
+
+  <!-- Tipografia institucional -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --verde-claro: #C3FE4D;
+      --verde: #2BA02D;
+      --azul: #19305A;
+      --fundo: #f6f9fc;
+      --branco: #ffffff;
+    }
+
+    body {
+      font-family: "Montserrat", sans-serif;
+      background: var(--fundo);
+      color: var(--azul);
+      margin: 0;
+      padding: 0;
+    }
+
+    header {
+      width: 1024px;
+      height: 256px;
+      margin: 40px auto;
+      background: rgba(25, 48, 90, 0.04);
+      border-radius: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+    }
+
+    header img {
+      height: 180px;
+      object-fit: contain;
+      transition: transform 0.3s ease;
+    }
+
+    header img:hover {
+      transform: scale(1.05);
+    }
+
+    .container {
+      max-width: 720px;
+      margin: 50px auto;
+      background: rgba(255, 255, 255, 0.95);
+      border-radius: 20px;
+      padding: 40px;
+      box-shadow: 0 4px 25px rgba(25, 48, 90, 0.1);
+    }
+
+    h2 {
+      text-align: center;
+      color: var(--azul);
+      font-weight: 800;
+      font-size: 1.8em;
+      margin-bottom: 30px;
+    }
+
+    label {
+      font-weight: 600;
+      margin-bottom: 6px;
+      display: block;
+      color: var(--azul);
+    }
+
+    input {
+      width: 100%;
+      padding: 12px;
+      margin-bottom: 16px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      background: rgba(255,255,255,0.95);
+      font-size: 15px;
+      color: var(--azul);
+    }
+
+    input:focus {
+      border-color: var(--verde);
+      outline: none;
+      box-shadow: 0 0 0 3px rgba(43,160,45,0.2);
+    }
+
+    .categorias {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+
+    .categorias label {
+      background: rgba(25, 48, 90, 0.05);
+      border-radius: 10px;
+      padding: 10px;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .categorias input {
+      display: none;
+    }
+
+    .categorias input:checked + span {
+      background: var(--verde);
+      color: var(--branco);
+      border-radius: 8px;
+      padding: 8px 16px;
+      font-weight: 700;
+    }
+
+    button {
+      width: 100%;
+      background: linear-gradient(135deg, var(--verde) 0%, var(--verde-claro) 100%);
+      color: var(--azul);
+      border: none;
+      padding: 16px;
+      border-radius: 12px;
+      font-size: 16px;
+      font-weight: 800;
+      cursor: pointer;
+      transition: 0.3s;
+      text-transform: uppercase;
+      box-shadow: 0 4px 12px rgba(43,160,45,0.2);
+    }
+
+    button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(43,160,45,0.3);
+    }
+
+    #mensagem {
+      text-align: center;
+      font-weight: 700;
+      color: var(--verde);
+      margin-top: 20px;
+      display: none;
+    }
+
+    footer {
+      margin: 50px auto;
+      text-align: center;
+      color: var(--azul);
+      font-size: 15px;
+      line-height: 1.6;
+    }
+
+    .pix {
+      margin-top: 10px;
+      background: rgba(195, 254, 77, 0.15);
+      border-radius: 10px;
+      padding: 10px 16px;
+      display: inline-block;
+      font-weight: 600;
+      color: var(--verde);
+    }
+
+    .qr-section {
+      margin-top: 20px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .qr-section img {
+      width: 120px;
+      border-radius: 10px;
+      border: 1px solid rgba(25, 48, 90, 0.1);
+    }
+
+    a.pdf-link {
+      display: inline-block;
+      margin-top: 10px;
+      color: var(--azul);
+      font-weight: bold;
+      text-decoration: none;
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <img src="ctb.png" alt="Logo CTB">
+    <img src="2open.png" alt="Open CTB 2025">
+    <img src="3open.png" alt="Logo 3">
+  </header>
+
+  <div class="container">
+    <h2>Ficha de Inscrição - Open CTB 2025</h2>
+
+    <form id="inscricaoForm">
+      <label>Nome Completo</label>
+      <input type="text" name="nome" required>
+
+      <label>Clube</label>
+      <input type="text" name="clube">
+
+      <label>WhatsApp</label>
+      <input type="tel" name="whatsapp" placeholder="(DDD) 99999-9999" required>
+
+      <label>Categorias (máx. 2 inscrições)</label>
+      <div class="categorias">
+        <label><input type="checkbox" name="categoria" value="Sub-13"><span>Sub-13</span></label>
+        <label><input type="checkbox" name="categoria" value="Sub-15"><span>Sub-15</span></label>
+        <label><input type="checkbox" name="categoria" value="Sub-19"><span>Sub-19</span></label>
+        <label><input type="checkbox" name="categoria" value="Adulto A"><span>Adulto A</span></label>
+        <label><input type="checkbox" name="categoria" value="Adulto B"><span>Adulto B</span></label>
+        <label><input type="checkbox" name="categoria" value="Adulto C"><span>Adulto C</span></label>
+        <label><input type="checkbox" name="categoria" value="Veterano 40+"><span>Veterano 40+</span></label>
+        <label><input type="checkbox" name="categoria" value="Veterano 60+"><span>Veterano 60+</span></label>
+      </div>
+
+      <button type="submit">Enviar Inscrição</button>
+    </form>
+
+    <div id="mensagem">✅ Inscrição confirmada com sucesso!</div>
+  </div>
+
+  <footer>
+    <strong>Conta para pagamento:</strong><br>
+    Banco 323 - Mercado Pago<br>Agência 0001 - Conta Corrente 8604599783-0<br>
+    <div class="pix">PIX: parcerias@ctb-ba.com.br</div>
+
+    <div class="qr-section">
+      <img src="qrcode.jpg" alt="QR Code Pagamento">
+      <a class="pdf-link" href="Regulamento-Open-CTB.pdf" target="_blank">📄 Baixar Regulamento</a>
+    </div>
+  </footer>
+
+  <script>
+    const form = document.getElementById('inscricaoForm');
+    const mensagem = document.getElementById('mensagem');
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      const formData = new FormData(form);
+      const categorias = Array.from(document.querySelectorAll('input[name="categoria"]:checked')).map(c => c.value);
+      if (categorias.length > 2) {
+        alert("Selecione no máximo duas categorias.");
+        return;
+      }
+      formData.append("categorias", categorias.join(", "));
+
+      const response = await fetch("https://script.google.com/macros/s/AKfycbwrUkhbpXvR_6qaG8Baw3p3O9awcdRIbPFQNOI9DHty_i-nM7tUdsJxRLhZm8kIyQI0/exec", {
+        method: "POST",
+        body: formData
+      });
+
+      if (response.ok) {
+        mensagem.style.display = "block";
+        form.reset();
+      } else {
+        alert("Erro ao enviar inscrição. Tente novamente.");
+      }
+    });
+  </script>
+
+</body>
+</html>
