@@ -4,7 +4,6 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Inscrição - Open CTB 2025</title>
-
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;800&display=swap" rel="stylesheet">
 
   <style>
@@ -59,14 +58,6 @@
       padding: 40px;
       box-shadow: 0 4px 25px rgba(25, 48, 90, 0.1);
       text-align: center;
-      opacity: 0;
-      transform: translateY(40px);
-      transition: all 0.8s ease;
-    }
-
-    .reveal {
-      opacity: 1;
-      transform: translateY(0);
     }
 
     h2 {
@@ -274,7 +265,7 @@
     <img src="opensite.png" alt="Open CTB 2025">
   </header>
 
-  <div class="container reveal">
+  <div class="container">
     <h2>Ficha de Inscrição - Open CTB 2025</h2>
 
     <form id="inscricaoForm">
@@ -319,7 +310,7 @@
     </form>
   </div>
 
-  <footer class="reveal">
+  <footer>
     <strong>Conta para pagamento:</strong><br>
     Banco 323 - Mercado Pago<br>
     Agência 0001 - Conta Corrente 8604599783-0<br>
@@ -360,7 +351,7 @@
       }
       formData.append("categorias", categorias.join(", "));
 
-      const response = await fetch("https://script.google.com/macros/s/AKfycbwLjP8m7I1O92p6zGj9-uVQEMOu35IRdP_u2msCiNdolgSKa84WugFl6dZka52XFUId/exec", {
+      const response = await fetch("https://script.google.com/macros/s/AKfycbzKZg6AhrCmHYMtIMWF3UqUGIo7jEhgyhvWa4MNa6DSSQs3jFf7FcvpDuGvNMm0JBD9/exec", {
         method: "POST",
         body: formData
       });
@@ -374,15 +365,6 @@
     });
 
     fecharModal.addEventListener('click', () => modal.classList.remove('active'));
-
-    const elementos = document.querySelectorAll('.container, footer');
-    window.addEventListener('scroll', () => {
-      const alturaJanela = window.innerHeight * 0.85;
-      elementos.forEach(el => {
-        const topo = el.getBoundingClientRect().top;
-        if (topo < alturaJanela) el.classList.add('reveal');
-      });
-    });
   </script>
 </body>
 </html>
