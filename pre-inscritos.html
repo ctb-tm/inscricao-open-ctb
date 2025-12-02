@@ -2,206 +2,266 @@
 <html lang="pt-BR">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pré-Inscritos – Open CTB 2025</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pré-Inscritos – Open CTB 2025</title>
 
-    <style>
-        body {
-            font-family: "Montserrat", sans-serif;
-            background: #f6f9fc;
-            color: #19305A;
-            margin: 0;
-            padding: 0;
-            text-align: center;
-        }
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&display=swap" rel="stylesheet" />
 
-        header img {
-            width: 90%;
-            max-width: 420px;
-            margin-top: 20px;
-        }
+  <style>
+    :root {
+      --verde-claro: #C3FE4D;
+      --verde: #2BA02D;
+      --azul: #19305A;
+      --fundo: #f6f9fc;
+      --branco: #ffffff;
+    }
 
-        .box {
-            background: #fff;
-            width: 92%;
-            max-width: 650px;
-            margin: 25px auto;
-            border-radius: 18px;
-            padding: 25px;
-            box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.15);
-        }
+    * {
+      box-sizing: border-box;
+      font-family: "Montserrat", sans-serif;
+    }
 
-        h2 {
-            margin-top: 5px;
-            font-size: 26px;
-            font-weight: 800;
-        }
+    body {
+      margin: 0;
+      padding: 0;
+      background: var(--fundo);
+      color: var(--azul);
+      display: flex;
+      justify-content: center;
+    }
 
-        .loading {
-            color: green;
-            font-weight: 700;
-        }
+    .main {
+      width: 100%;
+      max-width: 820px;
+      padding: 20px;
+    }
 
-        .erro {
-            color: red;
-            font-weight: bold;
-        }
+    header {
+      width: 100%;
+      height: 180px;
+      border-radius: 20px;
+      margin-bottom: 25px;
+      background: var(--branco);
+      box-shadow: 0 6px 20px rgba(25, 48, 90, 0.15);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
 
-        input,
-        select {
-            width: 100%;
-            padding: 12px;
-            margin: 10px 0;
-            border-radius: 8px;
-            border: 1px solid #ccc;
-        }
+    header img {
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: contain;
+    }
 
-        .tabela {
-            width: 100%;
-            margin-top: 20px;
-            border-collapse: collapse;
-            font-size: 14px;
-        }
+    h2 {
+      text-align: center;
+      font-weight: 800;
+      font-size: 26px;
+      margin-top: 10px;
+      margin-bottom: 5px;
+    }
 
-        .tabela th,
-        .tabela td {
-            border-bottom: 1px solid #ddd;
-            padding: 10px;
-        }
+    .status {
+      text-align: center;
+      font-weight: 700;
+      margin-bottom: 20px;
+      color: var(--verde);
+    }
 
-        .tabela th {
-            background: #19305A;
-            color: #fff;
-            font-weight: 700;
-        }
+    .erro {
+      color: red;
+      text-align: center;
+      font-weight: bold;
+      margin-bottom: 15px;
+    }
 
-        button.voltar {
-            background: #2BA02D;
-            border: none;
-            padding: 12px 25px;
-            margin: 25px 0;
-            border-radius: 12px;
-            font-size: 16px;
-            color: white;
-            font-weight: bold;
-            cursor: pointer;
-        }
-    </style>
+    input,
+    select {
+      width: 100%;
+      padding: 12px;
+      margin-top: 10px;
+      border-radius: 10px;
+      border: 1px solid #ccc;
+      font-size: 15px;
+    }
+
+    .table-container {
+      background: white;
+      border-radius: 20px;
+      margin-top: 20px;
+      padding: 18px;
+      box-shadow: 0 4px 20px rgba(25, 48, 90, 0.15);
+      overflow-x: auto;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 10px;
+    }
+
+    thead {
+      background: var(--azul);
+      color: white;
+    }
+
+    th,
+    td {
+      padding: 10px 8px;
+      text-align: left;
+      font-size: 14px;
+      border-bottom: 1px solid #e1e1e1;
+    }
+
+    th {
+      font-weight: 700;
+    }
+
+    tr:hover {
+      background: #f1f1f1;
+    }
+
+    .btn-voltar {
+      margin: 30px auto 0 auto;
+      display: block;
+      background: var(--verde);
+      padding: 12px 22px;
+      border-radius: 12px;
+      color: white;
+      font-weight: 700;
+      font-size: 16px;
+      border: none;
+      cursor: pointer;
+      text-align: center;
+    }
+
+    @media (max-width: 480px) {
+      header {
+        height: 130px;
+      }
+    }
+  </style>
 </head>
 
 <body>
+  <div class="main">
 
     <header>
-        <img src="opensite.png" alt="Open CTB 2025">
+      <img src="opensite.png" />
     </header>
 
-    <div class="box">
-        <h2>Pré-Inscritos — Open CTB 2025</h2>
+    <h2>Pré-Inscritos — Open CTB 2025</h2>
+    <p id="statusMsg" class="status">Carregando participantes...</p>
+    <p id="erroMsg" class="erro" style="display:none;"></p>
 
-        <p id="status" class="loading">Carregando participantes...</p>
+    <input type="text" id="filtroNome" placeholder="Filtrar por Nome">
+    <input type="text" id="filtroClube" placeholder="Filtrar por Clube">
 
-        <input type="text" id="filtroNome" placeholder="Filtrar por Nome">
-        <input type="text" id="filtroClube" placeholder="Filtrar por Clube">
+    <select id="filtroCategoria">
+      <option value="">Todas Categorias</option>
+      <option>Feminino</option>
+      <option>Sub-11</option>
+      <option>Sub-13</option>
+      <option>Sub-15</option>
+      <option>Sub-19</option>
+      <option>Adulto A</option>
+      <option>Adulto B</option>
+      <option>Adulto C</option>
+      <option>Veterano 40+</option>
+      <option>Veterano 60+</option>
+    </select>
 
-        <select id="filtroCategoria">
-            <option value="">Todas Categorias</option>
-            <option value="Feminino">Feminino</option>
-            <option value="Sub-11">Sub-11</option>
-            <option value="Sub-13">Sub-13</option>
-            <option value="Sub-15">Sub-15</option>
-            <option value="Sub-19">Sub-19</option>
-            <option value="Adulto A">Adulto A</option>
-            <option value="Adulto B">Adulto B</option>
-            <option value="Adulto C">Adulto C</option>
-            <option value="Veterano 40+">Veterano 40+</option>
-            <option value="Veterano 60+">Veterano 60+</option>
-        </select>
-
-        <table class="tabela" id="tabela">
-            <thead>
-                <tr>
-                    <th>Nº</th>
-                    <th>Nome</th>
-                    <th>Clube</th>
-                    <th>Camisa</th>
-                    <th>Categorias</th>
-                </tr>
-            </thead>
-            <tbody id="corpoTabela">
-            </tbody>
-        </table>
-
-        <button class="voltar" onclick="window.location.href='index.html'">⬅ Voltar</button>
+    <div class="table-container">
+      <table id="tabela">
+        <thead>
+          <tr>
+            <th>Nº</th>
+            <th>Nome</th>
+            <th>Clube</th>
+            <th>Camisa</th>
+            <th>Nome Sobrenome</th>
+            <th>Categorias</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
     </div>
 
-    <script>
-        const API_URL =
-            "https://script.google.com/macros/s/AKfycbzKZg6AhrCmHYMtIMWF3UqUGIo7jEhgyhvWa4MNa6DSSQs3jFf7FcvpDuGvNMm0JBD9/exec";
+    <button class="btn-voltar" onclick="window.location.href='index.html'">⬅ Voltar</button>
 
-        let listaCompleta = [];
+  </div>
 
-        async function carregarInscritos() {
-            try {
-                const resp = await fetch(API_URL);
-                const dados = await resp.json();
+  <script>
+    const API_URL =
+      "https://script.google.com/macros/s/AKfycbzKZg6AhrCmHYMtIMWF3UqUGIo7jEhgyhvWa4MNa6DSSQs3jFf7FcvpDuGvNMm0JBD9/exec";
 
-                if (dados.status !== "ok") {
-                    document.getElementById("status").innerHTML =
-                        "<span class='erro'>Erro ao carregar dados. Verifique a API.</span>";
-                    return;
-                }
+    let lista = [];
 
-                listaCompleta = dados.lista;
-                montarTabela(listaCompleta);
-                document.getElementById("status").style.display = "none";
+    async function carregarInscritos() {
+      try {
+        const resp = await fetch(API_URL);
+        const dados = await resp.json();
 
-            } catch (erro) {
-                console.error("ERRO API:", erro);
-                document.getElementById("status").innerHTML =
-                    "<span class='erro'>Erro ao carregar dados. API indisponível.</span>";
-            }
+        if (dados.status !== "ok") {
+          document.getElementById("erroMsg").innerHTML =
+            "Erro ao carregar dados. API indisponível.";
+          document.getElementById("erroMsg").style.display = "block";
+          return;
         }
 
-        function montarTabela(lista) {
-            const corpo = document.getElementById("corpoTabela");
-            corpo.innerHTML = "";
+        lista = dados.lista;
+        document.getElementById("statusMsg").style.display = "none";
+        renderTabela(lista);
 
-            lista.forEach(item => {
-                const linha = `
-                    <tr>
-                        <td>${item["Nº"]}</td>
-                        <td>${item["Nome completo"]}</td>
-                        <td>${item["Clube"]}</td>
-                        <td>${item["Camisa"]}</td>
-                        <td>${item["Categorias"]}</td>
-                    </tr>
-                `;
-                corpo.innerHTML += linha;
-            });
-        }
+      } catch (e) {
+        console.error(e);
+        document.getElementById("erroMsg").innerHTML =
+          "Erro ao carregar dados. API indisponível.";
+        document.getElementById("erroMsg").style.display = "block";
+      }
+    }
 
-        function aplicarFiltros() {
-            const nome = document.getElementById("filtroNome").value.toLowerCase();
-            const clube = document.getElementById("filtroClube").value.toLowerCase();
-            const categoria = document.getElementById("filtroCategoria").value;
+    function renderTabela(data) {
+      const tbody = document.querySelector("#tabela tbody");
+      tbody.innerHTML = "";
 
-            const filtrado = listaCompleta.filter(item =>
-                item["Nome completo"].toLowerCase().includes(nome) &&
-                item["Clube"].toLowerCase().includes(clube) &&
-                (categoria === "" || item["Categorias"].includes(categoria))
-            );
+      data.forEach(row => {
+        const tr = document.createElement("tr");
+        tr.innerHTML = `
+          <td>${row["Nº"]}</td>
+          <td>${row["Nome completo"]}</td>
+          <td>${row["Clube"]}</td>
+          <td>${row["Camisa"]}</td>
+          <td>${row["Nome Sobrenome"]}</td>
+          <td>${row["Categorias"]}</td>
+        `;
+        tbody.appendChild(tr);
+      });
+    }
 
-            montarTabela(filtrado);
-        }
+    function filtrar() {
+      const nome = document.getElementById("filtroNome").value.toLowerCase();
+      const clube = document.getElementById("filtroClube").value.toLowerCase();
+      const cat = document.getElementById("filtroCategoria").value.toLowerCase();
 
-        document.getElementById("filtroNome").addEventListener("input", aplicarFiltros);
-        document.getElementById("filtroClube").addEventListener("input", aplicarFiltros);
-        document.getElementById("filtroCategoria").addEventListener("change", aplicarFiltros);
+      const filtrado = lista.filter(r =>
+        (r["Nome completo"].toLowerCase().includes(nome)) &&
+        (r["Clube"].toLowerCase().includes(clube)) &&
+        (cat === "" || r["Categorias"].toLowerCase().includes(cat))
+      );
 
-        carregarInscritos();
-    </script>
+      renderTabela(filtrado);
+    }
 
+    document.getElementById("filtroNome").addEventListener("input", filtrar);
+    document.getElementById("filtroClube").addEventListener("input", filtrar);
+    document.getElementById("filtroCategoria").addEventListener("change", filtrar);
+
+    carregarInscritos();
+  </script>
 </body>
 
 </html>
