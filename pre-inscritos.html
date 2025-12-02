@@ -1,0 +1,280 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Lista Inscritos — OPEN CTB (Web 3.0)</title>
+
+  <!-- SheetJS CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+
+  <style>
+    :root{
+      --ctb-lime: #C3FE4D;
+      --ctb-green: #2BA02D;
+      --ctb-dark: #0B5F2B; /* footer dark green */
+      --card-bg: #3f3f3f;   /* box externo cinza médio escuro */
+      --row-light: #f2f2f2; /* linha cinza claro */
+      --row-mid: #d9d9d9;   /* linha cinza médio */
+      --muted: #4b5563;
+      --accent: var(--ctb-green);
+      font-family: "Montserrat", "Helvetica Neue", Arial, sans-serif;
+    }
+
+    html,body{height:100%;margin:0;background:#f5f5f6;color:#111}
+    .wrap{max-width:1100px;margin:28px auto;padding:0 16px}
+    /* Header */
+    header.site-header{
+      display:flex;align-items:center;justify-content:center;padding:18px 12px 0 12px;
+    }
+    .header-brand{
+      text-align:center;max-width:920px;width:100%;
+      display:flex;flex-direction:column;align-items:center;gap:8px;
+    }
+    .header-brand img#opensite{max-width:720px;width:100%;height:auto;object-fit:contain}
+    .event-date{font-size:14px;color:var(--muted);margin-top:2px}
+
+    /* Card container */
+    .card{
+      background:var(--card-bg);
+      border-radius:12px;
+      padding:18px;
+      margin-top:18px;
+      box-shadow: 0 10px 30px rgba(15,20,25,0.08);
+      color:#fff;
+      overflow:hidden;
+    }
+
+    /* Controls */
+    .controls{display:flex;gap:10px;align-items:center;justify-content:flex-end;margin-bottom:10px}
+    .btn{
+      display:inline-flex;align-items:center;gap:8px;
+      background:var(--accent);color:white;padding:8px 12px;border-radius:10px;border:none;cursor:pointer;font-weight:700;
+      box-shadow:0 6px 18px rgba(43,160,45,0.12)
+    }
+    .btn.ghost{background:transparent;color:#fff;border:1px solid rgba(255,255,255,0.12)}
+    .hint{color:rgba(255,255,255,0.85);font-size:13px;margin-right:auto}
+
+    /* Table box */
+    .table-box{
+      background:#ffffff; /* table inner white so rows gray are visible */
+      border-radius:10px;
+      padding:8px; 
+      overflow:auto;
+      max-height:560px;
+      box-shadow: inset 0 0 0 2px rgba(0,0,0,0.03);
+    }
+    table.data{
+      width:100%;border-collapse:collapse;font-size:14px;color:#111;
+      min-width:720px;
+    }
+    table.data thead th{
+      text-align:left;padding:12px 10px;background:#f8fafb;color:#111;font-weight:800;border-bottom:2px solid rgba(0,0,0,0.06);
+      position:sticky;top:0;z-index:2;
+    }
+    table.data tbody td{padding:10px 10px;border-bottom:1px solid rgba(0,0,0,0.04)}
+    table.data tbody tr:nth-child(odd){background:var(--row-light)}
+    table.data tbody tr:nth-child(even){background:var(--row-mid)}
+    table.data tbody tr:hover{background: #cfe7d3} /* subtle green hover */
+
+    /* Outer box around table (medium dark gray) */
+    .outer-box{
+      background:var(--card-bg);
+      padding:18px;
+      border-radius:12px;
+      margin-top:12px;
+    }
+
+    /* Footer */
+    footer.site-footer{
+      margin-top:18px;background:var(--ctb-dark);color:#fff;border-radius:8px;padding:12px 18px;display:flex;align-items:center;justify-content:space-between;gap:12px;
+    }
+    .footer-left,.footer-center,.footer-right{display:flex;flex-direction:column;gap:6px}
+    .footer-left a{color:#fff;text-decoration:none;font-weight:600}
+    .footer-left small{color:rgba(255,255,255,0.85)}
+    .footer-center img,.footer-right img{max-height:42px;object-fit:contain}
+    .footer-left .whatsapp{color:#fff;text-decoration:none}
+    .footer-left .email{color:#fff;text-decoration:none}
+    .copy{font-size:12px;color:rgba(255,255,255,0.85)}
+
+    /* Responsive */
+    @media (max-width:880px){
+      .controls{flex-direction:column;align-items:flex-start}
+      table.data{font-size:13px}
+      .header-brand img#opensite{max-width:420px}
+      footer.site-footer{flex-direction:column;align-items:center;text-align:center}
+      .footer-left,.footer-center,.footer-right{align-items:center}
+    }
+  </style>
+</head>
+
+<body>
+  <div class="wrap">
+
+    <!-- HEADER -->
+    <header class="site-header">
+      <div class="header-brand">
+        <!-- default image filename opensite.png (if available in same folder it will show) -->
+        <img id="opensite" src="opensite.png" alt="OPEN CTB - 20 de dezembro de 2025" onerror="this.style.display='none'">
+        <div class="event-date">OPEN CTB — 20 de dezembro de 2025 • Clube Campomar, Salvador - BA</div>
+
+        <!-- allow user to upload header logo if not present or to replace -->
+        <div style="margin-top:10px;display:flex;gap:8px;align-items:center;">
+          <label class="btn ghost">Logomarca cabeçalho
+            <input id="file-logo" type="file" accept="image/*" style="display:none" />
+          </label>
+        </div>
+      </div>
+    </header>
+
+    <!-- CARD / OUTER BOX -->
+    <div class="card">
+      <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;">
+        <div class="hint">Planilha: carregue sua lista de inscritos (XLSX)</div>
+        <div class="controls">
+          <label class="btn">
+            Carregar XLSX
+            <input id="file-xlsx" type="file" accept=".xlsx,.xls" style="display:none" />
+          </label>
+          <button id="printBtn" class="btn">Imprimir / PDF</button>
+          <button id="csvBtn" class="btn">Exportar CSV</button>
+        </div>
+      </div>
+
+      <!-- outer box medium dark gray -->
+      <div class="outer-box">
+        <!-- inner white box with table -->
+        <div class="table-box" id="tableBox">
+          <table class="data" id="dataTable">
+            <thead id="thead"></thead>
+            <tbody id="tbody"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="site-footer">
+      <div class="footer-left">
+        <div style="font-weight:800">Clube dos Tenistas da Bahia</div>
+        <small>CNPJ 23.146.328/0001-16</small>
+        <a class="whatsapp" href="https://wa.me/5571985304903" target="_blank">WhatsApp: +55 71 98530-4903</a>
+        <a class="email" href="mailto:paulo@ctb-ba.com.br">paulo@ctb-ba.com.br</a>
+      </div>
+
+      <div class="footer-center">
+        <img id="ctblink" src="ctblinkedin.jpg" alt="CTB LinkedIn" onerror="this.style.display='none'">
+      </div>
+
+      <div class="footer-right">
+        <img id="ctb1" src="ctb1.png" alt="CTB" onerror="this.style.display='none'">
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    // Elements
+    const fileXlsx = document.getElementById('file-xlsx');
+    const fileLogo = document.getElementById('file-logo');
+    const opensiteImg = document.getElementById('opensite');
+    const ctblink = document.getElementById('ctblink');
+    const ctb1 = document.getElementById('ctb1');
+    const thead = document.getElementById('thead');
+    const tbody = document.getElementById('tbody');
+    const printBtn = document.getElementById('printBtn');
+    const csvBtn = document.getElementById('csvBtn');
+
+    // Load header logo from file input (optional)
+    fileLogo.addEventListener('change', (e) => {
+      const f = e.target.files[0];
+      if(!f) return;
+      const reader = new FileReader();
+      reader.onload = ev => {
+        opensiteImg.src = ev.target.result;
+        opensiteImg.style.display = 'block';
+      };
+      reader.readAsDataURL(f);
+    });
+
+    // Parse XLSX
+    fileXlsx.addEventListener('change', (e) => {
+      const f = e.target.files[0];
+      if(!f) return;
+      const reader = new FileReader();
+      reader.onload = ev => {
+        const data = new Uint8Array(ev.target.result);
+        const workbook = XLSX.read(data, {type:'array'});
+        const sheetName = workbook.SheetNames[0];
+        const worksheet = workbook.Sheets[sheetName];
+        const rows = XLSX.utils.sheet_to_json(worksheet, {header:1,raw:true,defval:""});
+        renderTable(rows);
+      };
+      reader.readAsArrayBuffer(f);
+    });
+
+    function renderTable(rows){
+      thead.innerHTML = '';
+      tbody.innerHTML = '';
+
+      if(!rows || rows.length === 0){
+        thead.innerHTML = '<tr><th>Nenhuma linha na planilha</th></tr>';
+        return;
+      }
+
+      // Header (first row)
+      const header = rows[0];
+      const trh = document.createElement('tr');
+      header.forEach(h => {
+        const th = document.createElement('th');
+        th.textContent = h===null || h===undefined ? '' : String(h);
+        trh.appendChild(th);
+      });
+      thead.appendChild(trh);
+
+      // Body rows
+      for(let r=1; r<rows.length; r++){
+        const row = rows[r];
+        const tr = document.createElement('tr');
+
+        // Ensure same number of cells as header
+        for(let c=0; c<header.length; c++){
+          const td = document.createElement('td');
+          const cell = row[c];
+          td.textContent = cell===null || cell===undefined ? '' : String(cell);
+          tr.appendChild(td);
+        }
+
+        tbody.appendChild(tr);
+      }
+    }
+
+    // Print
+    printBtn.addEventListener('click', () => {
+      window.print();
+    });
+
+    // CSV export from current table
+    csvBtn.addEventListener('click', () => {
+      const rows = [];
+      const trs = document.querySelectorAll('#dataTable tr');
+      trs.forEach(tr => {
+        const cols = Array.from(tr.querySelectorAll('th,td')).map(td => {
+          let txt = td.textContent.replace(/"/g,'""');
+          if(txt.indexOf(',')>=0 || txt.indexOf('"')>=0 || txt.indexOf('\n')>=0){
+            txt = `"${txt}"`;
+          }
+          return txt;
+        });
+        rows.push(cols.join(','));
+      });
+      const csv = rows.join('\n');
+      const blob = new Blob([csv], {type:'text/csv;charset=utf-8;'});
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url; a.download = 'Lista_OPEN_CTB.csv';
+      document.body.appendChild(a); a.click(); a.remove();
+      URL.revokeObjectURL(url);
+    });
+  </script>
+</body>
+</html>
