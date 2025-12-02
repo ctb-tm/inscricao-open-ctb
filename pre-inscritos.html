@@ -1,196 +1,247 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Pré-Inscritos - Open CTB 2025</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pré-Inscritos – Open CTB 2025</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&display=swap" rel="stylesheet">
 
 <style>
-:root {
-  --verde: #2BA02D;
-  --verde-claro: #C3FE4D;
-  --azul: #19305A;
-  --fundo: #f6f9fc;
-  --branco: #fff;
-}
+    :root {
+        --azul: #19305A;
+        --verde: #2BA02D;
+        --verde-claro: #C3FE4D;
+        --fundo: #F6F9FC;
+        --branco: #ffffff;
+    }
 
-body {
-  font-family: "Montserrat", sans-serif;
-  background: var(--fundo);
-  color: var(--azul);
-  margin: 0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  min-height: 100vh;
-}
+    body {
+        margin: 0;
+        padding: 0;
+        background: var(--fundo);
+        font-family: 'Montserrat', sans-serif;
+        display: flex;
+        justify-content: center;
+    }
 
-header {
-  width: 756px;
-  height: 200px;
-  margin-top: 40px;
-  border-radius: 20px;
-  background: linear-gradient(135deg, #19305A 0%, #2BA02D 90%);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: 0 8px 25px rgba(25, 48, 90, 0.25);
-  overflow: hidden;
-}
+    .card {
+        width: 95%;
+        max-width: 650px;
+        background: white;
+        border-radius: 20px;
+        margin-top: 30px;
+        box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+        padding: 25px;
+        text-align: center;
+    }
 
-header img {
-  max-height: 100%;
-  max-width: 90%;
-}
+    header {
+        width: 100%;
+        margin-bottom: 25px;
+    }
 
-.container {
-  width: 95%;
-  max-width: 900px;
-  margin: 28px auto 60px;
-  background: var(--branco);
-  border-radius: 16px;
-  padding: 24px 28px;
-  box-shadow: 0 4px 20px rgba(25,48,90,.08);
-}
+    header img {
+        width: 100%;
+        border-radius: 18px;
+    }
 
-h2 {
-  text-align: center;
-  font-weight: 800;
-  color: var(--azul);
-  margin: 6px 0 12px;
-}
+    h2 {
+        font-size: 24px;
+        font-weight: 800;
+        color: var(--azul);
+        margin-bottom: 5px;
+    }
 
-.contador {
-  text-align: center;
-  font-size: 16px;
-  font-weight: 700;
-  color: var(--verde);
-  margin-bottom: 16px;
-}
+    .loading {
+        font-size: 18px;
+        color: var(--verde);
+        font-weight: 700;
+        margin-bottom: 15px;
+    }
 
-table {
-  width: 100%;
-  border-collapse: collapse;
-  border-radius: 10px;
-  overflow: hidden;
-  box-shadow: 0 0 0 1px rgba(25,48,90,.05);
-}
+    .erro {
+        color: red;
+        font-weight: 700;
+        margin-top: 15px;
+    }
 
-th, td {
-  padding: 10px 12px;
-  border-bottom: 1px solid rgba(25,48,90,.05);
-  text-align: left;
-}
+    input, select {
+        width: 100%;
+        padding: 12px;
+        border-radius: 10px;
+        border: 1px solid #ccc;
+        margin-bottom: 12px;
+        font-size: 14px;
+    }
 
-th {
-  background: var(--azul);
-  color: var(--branco);
-  font-weight: 700;
-  text-transform: uppercase;
-  font-size: 12px;
-}
+    .tabs {
+        display: flex;
+        gap: 5px;
+        justify-content: space-between;
+        margin-bottom: 15px;
+    }
 
-tr:hover {
-  background: rgba(43,160,45,.04);
-}
+    .tabs button {
+        flex: 1;
+        background: var(--azul);
+        color: white;
+        border: none;
+        padding: 10px;
+        border-radius: 8px;
+        cursor: pointer;
+        font-weight: 700;
+    }
 
-.erro {
-  color: #b00020;
-  text-align: center;
-  margin-top: 12px;
-  font-weight: 700;
-}
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 10px;
+    }
 
-.btn-voltar {
-  display: block;
-  width: max-content;
-  margin: 20px auto 0;
-  background: linear-gradient(135deg, var(--verde), var(--verde-claro));
-  color: var(--azul);
-  padding: 12px 24px;
-  border-radius: 10px;
-  text-decoration: none;
-  font-weight: 700;
-}
+    th, td {
+        padding: 10px;
+        border-bottom: 1px solid #ddd;
+        font-size: 14px;
+    }
 
-@media(max-width: 820px) {
-  header { width: 90%; height: auto; }
-  .container { width: 90%; padding: 18px; }
-}
+    th {
+        background: var(--azul);
+        color: white;
+        font-weight: 700;
+    }
+
+    .voltar {
+        margin-top: 25px;
+        background: var(--verde);
+        color: white;
+        padding: 12px 20px;
+        border-radius: 10px;
+        display: inline-block;
+        text-decoration: none;
+        font-weight: 700;
+    }
 </style>
 </head>
 
 <body>
 
-<header>
-  <img src="opensite.png" alt="Open CTB 2025">
-</header>
+<div class="card">
 
-<div class="container">
-  <h2>Pré-Inscritos — Open CTB 2025</h2>
+    <header>
+        <img src="opensite.png" alt="Open CTB 2025">
+    </header>
 
-  <div class="contador" id="contador">Carregando participantes…</div>
-  <div id="erro" class="erro" style="display:none"></div>
+    <h2>Pré-Inscritos — Open CTB 2025</h2>
+    <div class="loading" id="loading">Carregando participantes...</div>
+    <div class="erro" id="erro" style="display:none;">Erro ao carregar dados. Verifique a API.</div>
 
-  <table id="tabela">
-    <thead>
-      <tr>
-        <th>Nome</th>
-        <th>Clube</th>
-        <th>Categorias</th>
-        <th>Camisa</th>
-      </tr>
-    </thead>
-    <tbody></tbody>
-  </table>
+    <input type="text" id="filtroNome" placeholder="Filtrar por Nome">
+    <input type="text" id="filtroClube" placeholder="Filtrar por Clube">
 
-  <a class="btn-voltar" href="index.html">⬅ Voltar</a>
+    <select id="filtroCategoria">
+        <option value="">Todas Categorias</option>
+        <option>Feminino</option>
+        <option>Sub-11</option>
+        <option>Sub-13</option>
+        <option>Sub-15</option>
+        <option>Sub-19</option>
+        <option>Adulto A</option>
+        <option>Adulto B</option>
+        <option>Adulto C</option>
+        <option>Veterano 40+</option>
+        <option>Veterano 60+</option>
+    </select>
+
+    <div class="tabs">
+        <button onclick="ordenar('Nome completo')">NOME</button>
+        <button onclick="ordenar('Clube')">CLUBE</button>
+        <button onclick="ordenar('Categorias')">CATEGORIAS</button>
+        <button onclick="ordenar('Camisa')">CAMISA</button>
+    </div>
+
+    <table id="tabela">
+        <thead>
+            <tr>
+                <th>Nome</th>
+                <th>Clube</th>
+                <th>Camisa</th>
+                <th>Categorias</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+
+    <a href="index.html" class="voltar">← Voltar</a>
+
 </div>
 
 <script>
-const API_URL = "https://script.google.com/macros/s/AKfycbzKZg6AhrCmHYMtIMWF3UqUGIo7jEhgyhvWa4MNa6DSSQs3jFf7FcvpDuGvNMm0JBD9/exec";
+const API_URL = "https://script.google.com/macros/s/AKfycbzKZg6AhrCmHYMtIMWF3uQGlO7jEhghywWa4MNa6DSSQs3jFf7FcvpDuGvNMm0JBD9/exec";
 
-async function carregar() {
-  const contador = document.getElementById("contador");
-  const erro = document.getElementById("erro");
-  const tbody = document.querySelector("#tabela tbody");
+let inscritos = [];
+let filtrados = [];
 
-  try {
-    contador.textContent = "Carregando participantes…";
-    
-    const r = await fetch(API_URL, { cache: "no-store" });
-    const json = await r.json();
+async function carregarInscritos() {
+    try {
+        const resp = await fetch(API_URL);
+        const dados = await resp.json();
 
-    if (json.status !== "ok") {
-      throw new Error("Resposta inesperada da API");
+        if (!dados.lista) throw new Error();
+
+        inscritos = dados.lista;
+        filtrados = inscritos;
+
+        document.getElementById("loading").style.display = "none";
+
+        renderTabela();
+
+    } catch (err) {
+        document.getElementById("loading").style.display = "none";
+        document.getElementById("erro").style.display = "block";
+        console.error("Erro:", err);
     }
-
-    const dados = json.data;
-    tbody.innerHTML = "";
-
-    dados.forEach(linha => {
-      const tr = document.createElement("tr");
-      tr.innerHTML = `
-        <td>${linha["Nome completo"] || ""}</td>
-        <td>${linha["Clube"] || ""}</td>
-        <td>${linha["Categorias"] || ""}</td>
-        <td>${linha["Camisa"] || ""}</td>
-      `;
-      tbody.appendChild(tr);
-    });
-
-    contador.textContent = `Total de Pré-Inscritos: ${dados.length}`;
-
-  } catch (e) {
-    erro.style.display = "block";
-    erro.textContent = "Erro ao carregar dados. Verifique a API.";
-    console.error(e);
-  }
 }
 
-carregar();
+function renderTabela() {
+    const tbody = document.querySelector("#tabela tbody");
+    tbody.innerHTML = "";
+
+    filtrados.forEach(item => {
+        tbody.innerHTML += `
+            <tr>
+                <td>${item["Nome completo"] || ""}</td>
+                <td>${item["Clube"] || ""}</td>
+                <td>${item["Camisa"] || ""}</td>
+                <td>${item["Categorias"] || ""}</td>
+            </tr>`;
+    });
+}
+
+document.getElementById("filtroNome").addEventListener("input", filtrar);
+document.getElementById("filtroClube").addEventListener("input", filtrar);
+document.getElementById("filtroCategoria").addEventListener("change", filtrar);
+
+function filtrar() {
+    const nome = document.getElementById("filtroNome").value.toLowerCase();
+    const clube = document.getElementById("filtroClube").value.toLowerCase();
+    const cat = document.getElementById("filtroCategoria").value;
+
+    filtrados = inscritos.filter(item =>
+        item["Nome completo"].toLowerCase().includes(nome) &&
+        item["Clube"].toLowerCase().includes(clube) &&
+        (cat === "" || item["Categorias"].includes(cat))
+    );
+
+    renderTabela();
+}
+
+function ordenar(campo) {
+    filtrados.sort((a,b) => (a[campo] > b[campo] ? 1 : -1));
+    renderTabela();
+}
+
+carregarInscritos();
 </script>
 
 </body>
