@@ -174,7 +174,7 @@
           <th>Nome</th>
           <th>Clube</th>
           <th>Categorias</th>
-          <th>Tam. Camisa</th>
+          <th>Camisa</th>
         </tr>
       </thead>
       <tbody></tbody>
@@ -190,42 +190,45 @@
     let inscritos = [];
 
     async function carregarInscritos() {
-      try {
-        const res = await fetch(PLANILHA_URL);
-        const data = await res.json();
+      const res = await fetch(PLANILHA_URL);
+      const data = await res.json();
 
-        inscritos = data.slice(1); // Ignora cabeçalho
-        atualizarTabela();
-      } catch (erro) {
-        console.error("Erro ao carregar inscritos:", erro);
-      }
+      // Agora usando os nomes reais das colunas da sua planilha
+      inscritos = data.map(linha => ({
+        nome: linha["Nome completo"],
+        clube: linha["Clube"],
+        camisa: linha["Camisa"],
+        nomeCamisa: linha["Nome Sobrenome"],
+        categorias: linha["Categorias"]
+      }));
+
+      atualizarTabela();
     }
 
     function atualizarTabela() {
-      const nomeFiltro = document.getElementById("filtroNome").value.toLowerCase();
-      const clubeFiltro = document.getElementById("filtroClube").value.toLowerCase();
-      const categoriaFiltro = document.getElementById("filtroCategoria").value;
+      const filtroNome = document.getElementById("filtroNome").value.toLowerCase();
+      const filtroClube = document.getElementById("filtroClube").value.toLowerCase();
+      const filtroCategoria = document.getElementById("filtroCategoria").value;
 
       const tbody = document.querySelector("#tabelaInscritos tbody");
       tbody.innerHTML = "";
 
       const filtrados = inscritos.filter(item => {
-        const nomeMatch = item.Nome?.toLowerCase().includes(nomeFiltro);
-        const clubeMatch = item.Clube?.toLowerCase().includes(clubeFiltro);
+        const nomeMatch = item.nome?.toLowerCase().includes(filtroNome);
+        const clubeMatch = item.clube?.toLowerCase().includes(filtroClube);
         const categoriaMatch =
-          categoriaFiltro === "" ||
-          (item.Categorias && item.Categorias.includes(categoriaFiltro));
-
+          filtroCategoria === "" ||
+          (item.categorias && item.categorias.includes(filtroCategoria));
         return nomeMatch && clubeMatch && categoriaMatch;
       });
 
       filtrados.forEach(row => {
         const tr = document.createElement("tr");
         tr.innerHTML = `
-          <td>${row.Nome}</td>
-          <td>${row.Clube || "-"}</td>
-          <td>${row.Categorias || "-"}</td>
-          <td>${row["Tamanho Camisa"] || "-"}</td>
+          <td>${row.nome}</td>
+          <td>${row.clube || "-"}</td>
+          <td>${row.categorias || "-"}</td>
+          <td>${row.camisa || "-"}</td>
         `;
         tbody.appendChild(tr);
       });
