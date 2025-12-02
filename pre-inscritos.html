@@ -1,247 +1,197 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Pré-Inscritos - Open CTB 2025</title>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;800&display=swap" rel="stylesheet">
-
-  <style>
-    :root {
-      --verde-claro: #C3FE4D;
-      --verde: #2BA02D;
-      --azul: #19305A;
-      --fundo: #f6f9fc;
-      --branco: #ffffff;
-    }
-
-    body {
-      font-family: "Montserrat", sans-serif;
-      background: var(--fundo);
-      color: var(--azul);
-      margin: 0;
-      padding: 0;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      min-height: 100vh;
-    }
-
-    header {
-      width: 756px;
-      height: 200px;
-      margin-top: 50px;
-      border-radius: 25px;
-      background: linear-gradient(135deg, #19305A 0%, #2BA02D 90%);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      box-shadow: 0 8px 25px rgba(25, 48, 90, 0.25);
-      overflow: hidden;
-    }
-
-    header img {
-      max-height: 100%;
-      max-width: 90%;
-    }
-
-    .container {
-      width: 95%;
-      max-width: 900px;
-      margin: 40px auto 60px;
-      background: var(--branco);
-      border-radius: 18px;
-      padding: 30px 40px;
-      box-shadow: 0 4px 25px rgba(25, 48, 90, 0.1);
-    }
-
-    h2 {
-      text-align: center;
-      font-weight: 800;
-      color: var(--azul);
-      margin-bottom: 12px;
-    }
-
-    .contador {
-      text-align: center;
-      font-size: 18px;
-      font-weight: 700;
-      color: var(--verde);
-      margin-bottom: 25px;
-    }
-
-    .filtros {
-      display: flex;
-      gap: 20px;
-      flex-wrap: wrap;
-      justify-content: center;
-      margin-bottom: 25px;
-    }
-
-    .filtros input, .filtros select {
-      padding: 10px 14px;
-      border-radius: 10px;
-      border: 1px solid #bbb;
-      font-size: 15px;
-      min-width: 200px;
-    }
-
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      border-radius: 12px;
-      overflow: hidden;
-      box-shadow: 0 0 0 1px rgba(25,48,90,0.05);
-    }
-
-    th, td {
-      padding: 12px 16px;
-      border-bottom: 1px solid rgba(25,48,90,0.05);
-      text-align: left;
-    }
-
-    th {
-      background: var(--azul);
-      color: var(--branco);
-      font-weight: 700;
-      text-transform: uppercase;
-      font-size: 13px;
-    }
-
-    tr:hover {
-      background: rgba(43,160,45,0.05);
-    }
-
-    .btn-voltar {
-      display: inline-block;
-      background: linear-gradient(135deg, var(--verde) 0%, var(--verde-claro) 100%);
-      color: var(--azul);
-      font-weight: 700;
-      text-decoration: none;
-      border-radius: 10px;
-      padding: 12px 26px;
-      margin-top: 30px;
-      transition: all 0.3s ease;
-    }
-
-    .btn-voltar:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 4px 12px rgba(43,160,45,0.3);
-    }
-
-    @media (max-width: 820px) {
-      header { width: 90%; height: auto; }
-      .container { width: 90%; padding: 20px; }
-      table { font-size: 13px; }
-      .filtros { flex-direction: column; }
-    }
-  </style>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Pré-Inscritos - Open CTB 2025</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{--verde:#2BA02D;--verde-claro:#C3FE4D;--azul:#19305A;--fundo:#f6f9fc;--branco:#fff}
+  body{font-family:"Montserrat",sans-serif;background:var(--fundo);color:var(--azul);margin:0;display:flex;flex-direction:column;align-items:center;min-height:100vh}
+  header{width:756px;height:200px;margin-top:40px;border-radius:20px;background:linear-gradient(135deg,#19305A 0%,#2BA02D 90%);display:flex;align-items:center;justify-content:center;box-shadow:0 8px 25px rgba(25,48,90,.25);overflow:hidden}
+  header img{max-height:100%;max-width:90%}
+  .container{width:95%;max-width:900px;margin:28px auto 60px;background:var(--branco);border-radius:16px;padding:24px 28px;box-shadow:0 4px 20px rgba(25,48,90,.08)}
+  h2{text-align:center;font-weight:800;color:var(--azul);margin:6px 0 12px}
+  .contador{ text-align:center;font-size:16px;font-weight:700;color:var(--verde);margin-bottom:16px}
+  .filtros{display:flex;gap:12px;flex-wrap:wrap;justify-content:center;margin-bottom:16px}
+  .filtros input,.filtros select{padding:10px 12px;border-radius:10px;border:1px solid #bbb;font-size:14px;min-width:160px}
+  table{width:100%;border-collapse:collapse;border-radius:10px;overflow:hidden;box-shadow:0 0 0 1px rgba(25,48,90,.05)}
+  th,td{padding:10px 12px;border-bottom:1px solid rgba(25,48,90,.05);text-align:left}
+  th{background:var(--azul);color:var(--branco);font-weight:700;text-transform:uppercase;font-size:12px}
+  tr:hover{background:rgba(43,160,45,.04)}
+  .btn-voltar{display:inline-block;background:linear-gradient(135deg,var(--verde) 0%,var(--verde-claro) 100%);color:var(--azul);font-weight:700;text-decoration:none;border-radius:10px;padding:10px 20px;margin-top:18px;transition:all .2s}
+  .btn-voltar:hover{transform:translateY(-2px);box-shadow:0 6px 18px rgba(43,160,45,.18)}
+  .erro { color: #b00020; text-align:center; margin-top:12px; font-weight:700 }
+  @media(max-width:820px){header{width:90%} .container{width:90%;padding:18px} table{font-size:13px} .filtros{flex-direction:column}}
+</style>
 </head>
-
 <body>
-  <header>
-    <img src="opensite.png" alt="Open CTB 2025">
-  </header>
+<header><img src="opensite.png" alt="Open CTB 2025"></header>
 
-  <div class="container">
-    <h2>Pré-Inscritos — Open CTB 2025</h2>
-    <div class="contador" id="contador">Carregando participantes...</div>
+<div class="container">
+  <h2>Pré-Inscritos — Open CTB 2025</h2>
+  <div class="contador" id="contador">Carregando participantes...</div>
 
-    <!-- FILTROS -->
-    <div class="filtros">
-      <input type="text" id="filtroNome" placeholder="Filtrar por Nome">
-      <input type="text" id="filtroClube" placeholder="Filtrar por Clube">
-
-      <select id="filtroCategoria">
-        <option value="">Todas as Categorias</option>
-        <option value="Feminino">Feminino</option>
-        <option value="Sub-11">Sub-11</option>
-        <option value="Sub-13">Sub-13</option>
-        <option value="Sub-15">Sub-15</option>
-        <option value="Sub-19">Sub-19</option>
-        <option value="Adulto A">Adulto A</option>
-        <option value="Adulto B">Adulto B</option>
-        <option value="Adulto C">Adulto C</option>
-        <option value="Veterano 40+">Veterano 40+</option>
-        <option value="Veterano 60+">Veterano 60+</option>
-      </select>
-    </div>
-
-    <!-- TABELA DINÂMICA -->
-    <table id="tabelaInscritos">
-      <thead>
-        <tr>
-          <th>Nome</th>
-          <th>Clube</th>
-          <th>Categorias</th>
-          <th>Camisa</th>
-        </tr>
-      </thead>
-      <tbody></tbody>
-    </table>
-
-    <a href="index.html" class="btn-voltar">⬅️ Voltar à Inscrição</a>
+  <div class="filtros">
+    <input id="filtroNome" placeholder="Filtrar por Nome" />
+    <input id="filtroClube" placeholder="Filtrar por Clube" />
+    <select id="filtroCategoria">
+      <option value="">Todas as Categorias</option>
+      <option>Feminino</option><option>Sub-11</option><option>Sub-13</option><option>Sub-15</option>
+      <option>Sub-19</option><option>Adulto A</option><option>Adulto B</option><option>Adulto C</option>
+      <option>Veterano 40+</option><option>Veterano 60+</option>
+    </select>
   </div>
 
-  <script>
-    const PLANILHA_URL =
-      "https://opensheet.elk.sh/1m_ai30cbLA79RgKrjx55sqPWOSLNRPDUbwQUnqCPBzM/Respostas";
+  <div id="mensagemErro" class="erro" style="display:none"></div>
 
-    let inscritos = [];
+  <table id="tabelaInscritos" aria-live="polite">
+    <thead>
+      <tr><th>Nome</th><th>Clube</th><th>Categorias</th><th>Camisa</th></tr>
+    </thead>
+    <tbody></tbody>
+  </table>
 
-    async function carregarInscritos() {
-      const res = await fetch(PLANILHA_URL);
-      const data = await res.json();
+  <a class="btn-voltar" href="index.html">⬅️ Voltar à Inscrição</a>
+</div>
 
-      // Agora usando os nomes reais das colunas da sua planilha
-      inscritos = data.map(linha => ({
-        nome: linha["Nome completo"],
-        clube: linha["Clube"],
-        camisa: linha["Camisa"],
-        nomeCamisa: linha["Nome Sobrenome"],
-        categorias: linha["Categorias"]
-      }));
+<script>
+/*
+  Versão robusta de carregamento:
+  1) tenta OpenSheet (elk.sh)
+  2) se falhar, tenta Google Visualization API (gviz) usando sheet name=Respostas
+  3) mostra mensagens de erro úteis e logs no console
+*/
 
-      atualizarTabela();
-    }
+const SHEET_ID = "1m_ai30cbLA79RgKrjx55sqPWOSLNRPDUbwQUnqCPBzM";
+const SHEET_NAME = "Respostas";
+const OPENSHEET_URL = `https://opensheet.elk.sh/${SHEET_ID}/${encodeURIComponent(SHEET_NAME)}`;
+const GVIZ_URL = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:json&sheet=${encodeURIComponent(SHEET_NAME)}`;
 
-    function atualizarTabela() {
-      const filtroNome = document.getElementById("filtroNome").value.toLowerCase();
-      const filtroClube = document.getElementById("filtroClube").value.toLowerCase();
-      const filtroCategoria = document.getElementById("filtroCategoria").value;
+const mensagemErroEl = document.getElementById("mensagemErro");
+const contadorEl = document.getElementById("contador");
+const tbody = document.querySelector("#tabelaInscritos tbody");
 
-      const tbody = document.querySelector("#tabelaInscritos tbody");
-      tbody.innerHTML = "";
+let inscritos = [];
 
-      const filtrados = inscritos.filter(item => {
-        const nomeMatch = item.nome?.toLowerCase().includes(filtroNome);
-        const clubeMatch = item.clube?.toLowerCase().includes(filtroClube);
-        const categoriaMatch =
-          filtroCategoria === "" ||
-          (item.categorias && item.categorias.includes(filtroCategoria));
-        return nomeMatch && clubeMatch && categoriaMatch;
+function showError(msg){
+  mensagemErroEl.style.display = "block";
+  mensagemErroEl.textContent = msg;
+  console.error("pre-inscritos error:", msg);
+  contadorEl.textContent = "Erro ao carregar pré-inscritos";
+}
+
+// tentativa com OpenSheet
+async function tryOpenSheet(){
+  try {
+    console.log("Tentando OpenSheet:", OPENSHEET_URL);
+    const r = await fetch(OPENSHEET_URL, {cache: "no-store"});
+    if(!r.ok) throw new Error(`OpenSheet HTTP ${r.status}`);
+    const json = await r.json();
+    // openSheet returns header row as keys; map to our internal format
+    inscritos = json.map(row => ({
+      nome: row["Nome completo"] || row["Nome"] || row["Full Name"] || "",
+      clube: row["Clube"] || "",
+      camisa: row["Camisa"] || "",
+      nomeCamisa: row["Nome Sobrenome"] || row["Nome Sobrenome"] || "",
+      categorias: row["Categorias"] || ""
+    }));
+    console.log("OpenSheet OK - registros:", inscritos.length);
+    if(inscritos.length === 0) throw new Error("OpenSheet retornou 0 registros.");
+    return true;
+  } catch (err){
+    console.warn("OpenSheet falhou:", err);
+    return false;
+  }
+}
+
+// fallback para GViz
+async function tryGviz(){
+  try {
+    console.log("Tentando GViz:", GVIZ_URL);
+    const r = await fetch(GVIZ_URL, {cache: "no-store"});
+    if(!r.ok) throw new Error(`GViz HTTP ${r.status}`);
+    const text = await r.text();
+    // gviz returns:  /*O_o*/\ngoogle.visualization....({...});
+    const jsonText = text.replace(/^[^\(]*\(([\s\S]*)\)\s*;?\s*$/,"$1");
+    const obj = JSON.parse(jsonText);
+    // obj.table.cols => column labels; obj.table.rows => data
+    const cols = obj.table.cols.map(c => c.label);
+    const rows = obj.table.rows.map(rw => {
+      const out = {};
+      rw.c.forEach((cell, idx) => {
+        const key = cols[idx] || idx;
+        out[key] = (cell && cell.v !== null && cell.v !== undefined) ? String(cell.v) : "";
       });
+      return out;
+    });
+    inscritos = rows.map(row => ({
+      nome: row["Nome completo"] || row["Nome"] || "",
+      clube: row["Clube"] || "",
+      camisa: row["Camisa"] || "",
+      nomeCamisa: row["Nome Sobrenome"] || row["Nome Sobrenome"] || "",
+      categorias: row["Categorias"] || ""
+    }));
+    console.log("GViz OK - registros:", inscritos.length);
+    if(inscritos.length === 0) throw new Error("GViz retornou 0 registros.");
+    return true;
+  } catch (err){
+    console.warn("GViz falhou:", err);
+    return false;
+  }
+}
 
-      filtrados.forEach(row => {
-        const tr = document.createElement("tr");
-        tr.innerHTML = `
-          <td>${row.nome}</td>
-          <td>${row.clube || "-"}</td>
-          <td>${row.categorias || "-"}</td>
-          <td>${row.camisa || "-"}</td>
-        `;
-        tbody.appendChild(tr);
-      });
+async function carregarInscritosRobusto(){
+  mensagemErroEl.style.display = "none";
+  contadorEl.textContent = "Carregando participantes...";
+  tbody.innerHTML = "";
+  let ok = await tryOpenSheet();
+  if(!ok){
+    // espera 500ms e tenta GViz
+    await new Promise(r=>setTimeout(r,500));
+    ok = await tryGviz();
+  }
+  if(!ok){
+    showError("Não foi possível carregar a planilha. Verifique: (1) Planilha pública / compartilhada; (2) nome da aba 'Respostas'; (3) tente usar File → Publish to web.");
+    return;
+  }
+  atualizarTabela();
+}
 
-      document.getElementById("contador").innerText =
-        `Total de Pré-Inscritos: ${filtrados.length}`;
-    }
+function atualizarTabela(){
+  const filtroNome = document.getElementById("filtroNome").value.toLowerCase();
+  const filtroClube = document.getElementById("filtroClube").value.toLowerCase();
+  const filtroCategoria = document.getElementById("filtroCategoria").value;
 
-    document.getElementById("filtroNome").addEventListener("input", atualizarTabela);
-    document.getElementById("filtroClube").addEventListener("input", atualizarTabela);
-    document.getElementById("filtroCategoria").addEventListener("change", atualizarTabela);
+  tbody.innerHTML = "";
 
-    carregarInscritos();
-  </script>
+  const filtrados = inscritos.filter(item => {
+    const nomeMatch = (item.nome || "").toLowerCase().includes(filtroNome);
+    const clubeMatch = (item.clube || "").toLowerCase().includes(filtroClube);
+    const categoriaMatch = filtroCategoria === "" || (item.categorias && item.categorias.includes(filtroCategoria));
+    return nomeMatch && clubeMatch && categoriaMatch;
+  });
+
+  for(const row of filtrados){
+    const tr = document.createElement("tr");
+    tr.innerHTML = `<td>${escapeHtml(row.nome)}</td><td>${escapeHtml(row.clube||"-")}</td><td>${escapeHtml(row.categorias||"-")}</td><td>${escapeHtml(row.camisa||"-")}</td>`;
+    tbody.appendChild(tr);
+  }
+
+  contadorEl.textContent = `Total de Pré-Inscritos: ${filtrados.length}`;
+}
+
+// escape básico para evitar injeção no HTML
+function escapeHtml(s){
+  return String(s||"").replace(/[&<>"']/g, function(m){ return ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'})[m]; });
+}
+
+document.getElementById("filtroNome").addEventListener("input", atualizarTabela);
+document.getElementById("filtroClube").addEventListener("input", atualizarTabela);
+document.getElementById("filtroCategoria").addEventListener("change", atualizarTabela);
+
+// run
+carregarInscritosRobusto();
+</script>
 </body>
 </html>
